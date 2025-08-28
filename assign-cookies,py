@@ -1,0 +1,18 @@
+#https://leetcode.com/problems/assign-cookies/description/?language=Python
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        total_contented_child=0
+        if len(s) ==0 or len(g) ==0 or min(g) >max(s):
+            return 0
+        g.sort()
+        s.sort()
+        starting_index=0
+        for g_val in g:
+            if starting_index == len(s):
+                break
+            for size in range(starting_index,len(s)):
+                if g_val <=s[size]:
+                    total_contented_child +=1
+                    starting_index = size +1
+                    break
+        return total_contented_child
